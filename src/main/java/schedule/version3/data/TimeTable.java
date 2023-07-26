@@ -15,8 +15,8 @@ public class TimeTable {
         Relationships relationships = new Relationships();
         // Összes osztály lyukasóráinak előállítása
         for (int i = 0; i < classes.size(); i++) {
-            randomHoursPerDay[i] = siteOfHoleInTimeTable(classes.get(i));
-            siteOfHoles[i] = calculatesiteOfFreePeriod(randomHoursPerDay[i]);
+            randomHoursPerDay[i] = randomHoursPerDay(classes.get(i));
+            siteOfHoles[i] = calculateSiteOfFreePeriod(randomHoursPerDay[i]);
             siteOfReservedPlaces[i] = new HashSet<>(siteOfHoles[i]);
         }
 
@@ -71,7 +71,7 @@ public class TimeTable {
     }
 
 
-    private static int[] siteOfHoleInTimeTable(Classes classes) {
+    private static int[] randomHoursPerDay(Classes classes) {
         Random random = new Random();
 
         double hoursPerDay = (double) classes.getLessonsPerWeek() / 5;
@@ -93,7 +93,7 @@ public class TimeTable {
     }
 
     // A napi óraszámokból a lyukak helyének meghatározása
-    private static List<Integer> calculatesiteOfFreePeriod(int[] HoursPerDay) {
+    private static List<Integer> calculateSiteOfFreePeriod(int[] HoursPerDay) {
         List<Integer> siteOfHole = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             int actualHole = HoursPerDay[i] + 1;

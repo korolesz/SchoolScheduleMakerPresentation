@@ -84,6 +84,7 @@ public class Population {
      */
     public Individual getFittest(int offset) {
         // Order population by fitness
+        //Arrays.sort(this.population, (I1, I2) -> Double.compare(I1.getFitness(), I2.calcFitness()));
         Arrays.sort(this.population, new Comparator<Individual>() {
             @Override
             public int compare(Individual o1, Individual o2) {
